@@ -6,6 +6,7 @@ import os
 import random
 import subprocess
 import time
+import pdb
 
 
 urnd = random.SystemRandom()
@@ -139,6 +140,8 @@ def get_votes():
 
     ballot_entries = sorted(ballot, key=lambda s: ballot[s]['votes_needed'], reverse=False)
 
+    return ballot_entries
 
 if __name__ == '__main__':
     get_votes()
+    pdb.set
