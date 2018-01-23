@@ -14,16 +14,6 @@ import tty
 urnd = random.SystemRandom()
 
 
-def getch():
-    fd = sys.stdin.fileno()
-    old_settings = termios.tcgetattr(fd)
-    try:
-        tty.setraw(fd)
-        ch = sys.stdin.read(1)
-    finally:
-        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-    return ch
-
 def urandom_int():
     urandom = map(ord, os.urandom(4))
     offset = 0
@@ -31,10 +21,12 @@ def urandom_int():
         offset += pow(urandom[d], 2**d)
     return offset
 
+
 def random_offset(size):
     bigint = urandom_int()
     offset_range = bigint % size
     return offset_range - (size/2)
+
 
 def random_timestamp():
     now_epoch = int(time.time())
@@ -61,25 +53,20 @@ if "check_output" not in dir( subprocess ):
         return output
     subprocess.check_output = f
 
+
 def run_command(cmd):
     return subprocess.check_output(cmd, shell=True)
+
 
 def run_dash_cli_command(cmd):
     return run_command("%s %s" % (dash_cli_path or 'dash-cli', cmd))
 
-def get_votes():
 
-    global stdscr
-    global max_yeacount_len
-    global max_naycount_len
+def get_votes():
     global max_percentage_len
     global max_needed_len
     global days_to_finalization
     global ballot_entries
-    global votewin
-
-    stdscr = screen
-    stdscr.scrollok(1)
 
 
     mncount = int(run_dash_cli_command('masternode count enabled'))
@@ -154,9 +141,6 @@ def get_votes():
         max_percentage_len = max(max_percentage_len, len(str(percentage)))
 
     ballot_entries = sorted(ballot, key=lambda s: ballot[s]['votes_needed'], reverse=False)
-
-
-
 
 
 if __name__ == '__main__':
