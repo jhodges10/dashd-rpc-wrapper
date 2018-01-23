@@ -56,7 +56,7 @@ def run_command(cmd):
 
 
 def run_dash_cli_command(cmd):
-    return run_command("%s %s" % (dash_cli_path or 'dash-cli', cmd))
+    return run_command("%s %s" % ('dash-cli', cmd))
 
 
 def get_votes():
