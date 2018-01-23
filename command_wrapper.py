@@ -144,4 +144,5 @@ def get_votes():
 
 if __name__ == '__main__':
     get_votes()
-    pdb.set
+    pdb.set_trace()
+
