@@ -5,10 +5,7 @@ import json
 import os
 import random
 import subprocess
-import sys
-import termios
 import time
-import tty
 
 
 urnd = random.SystemRandom()
