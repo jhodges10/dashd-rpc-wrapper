@@ -127,7 +127,7 @@ def get_votes():
         ballot[entry][u'vote_threshold'] = (
             yeas + nays) > threshold and True or False
         ballot[entry][u'vote_passing'] = (
-            yeas - nays) > threshold and True or False
+            yeas - nays) > threshold   and True or False
         ballot[entry][u'voted_down'] = (
             nays - yeas) > threshold and True or False
         max_proposal_len = max(
